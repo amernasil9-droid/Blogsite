@@ -10,7 +10,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, 
                                 related_name='blog_posts')
     body = models.TextField()
-    published = models.DateTimeField(default=timezone.now)
+    publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=2, 
                             choices=Status.choices, 
@@ -19,7 +19,7 @@ class Post(models.Model):
 
 
     class Meta:
-        ordering = ('-publish')
+        ordering = ['-publish']
         indexes = [
             models.Index(fields=['-publish'])
         ]
